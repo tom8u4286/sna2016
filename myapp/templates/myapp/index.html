@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>myapp</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="">
+</head>
+<body>
+
+	<div class="container-full">
+		<header id='header' class="navbar navbar-fixed-top header">
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="middle">
+						<img class="logo" src=""></img>
+                <button id="share-button" class="btn btn-primary share">Sharing on FB</button>
+                <button id="my-button" class="btn btn-primary login">Facebook Login</button>
+                <img id="my-profile-picture" class="img-rounded user-pic" src="">
+                <h5 id="user-name"></h5>
+                
+					</div>
+					
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+		</header>
+	</div>
+	<div class="container" id="main-container">
+		<div class="row">
+  			<div class="col-md-3 block">
+  				<h1>Form</h1>
+          <div class="post-form">
+            <form method="POST" action='' enctype='multipart/form-data'>
+
+
+              <input type="text" class="form-control" placeholder="text" name="name">
+              <button type="submit">post</button>
+            </form>
+          </div>
+
+  			</div>
+  			<div class="col-md-6 block">
+  				<h1>posts</h1>
+
+              <div class="container-post">
+                <h2 class="name"></h2>
+              </div>               
+
+  			</div>
+  			<div class="col-md-3 block">
+  				<h1>Friend lists</h1>
+          <div class="friend-block">
+          </div>
+  			</div>
+		</div>
+	</div>
+
+</body>
+</html>
