@@ -35,6 +35,8 @@
   				<h1>Form</h1>
           <div class="post-form">
             <form method="POST">
+              {% csrf_token %}
+              {{ form.as_p }}
 
               <input type="text" class="form-control" placeholder="text" name="text">
               <button type="submit">post</button>
