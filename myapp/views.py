@@ -13,9 +13,9 @@ def index(request):
 	if request.method == 'POST':
 		django_form = AddPost(request.POST)
         if django_form.is_valid():
-           
+
             new_post_text = django_form.data.get("text")
-            
+
             Post.objects.create(
                 text = new_post_text, 
                 )                 
