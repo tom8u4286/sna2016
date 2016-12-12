@@ -16,3 +16,6 @@ var loginCheck = function() {
         }
     });
 }
+$("#my-button").click(function() {
+    loginCheck();
+});
