@@ -99,7 +99,8 @@ window.fbloaded = function() {
               for (i = 0; i < len; i++) {
                 var iDiv = document.createElement('img');
                 iDiv.className = 'friend-pic img-rounded';
-                iDiv.src = "http://graph.facebook.com/"+response.data[i].id+"/picture?type=square";
+                iDiv.src = "http://graph.facebook.com/"+
+                              response.data[i].id+"/picture?type=square";
                 document.getElementsByClassName('friend-block')[0].appendChild(iDiv);
               }
             });
