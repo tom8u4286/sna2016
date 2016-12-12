@@ -17,4 +17,5 @@ def index(request):
 			Post.objects.create(text = new_post_text,)
 			return HttpResponseRedirect("/")
 		else:
-			return render(request,"myapp/index.html")
+			post_list = Post.objects.all()
+			return render(request,"myapp/index.html",,{'posts': post_list})
