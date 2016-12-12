@@ -8,7 +8,9 @@ from django.http import HttpResponseRedirect
 
 def index(request):
 	if request.method == 'GET':
-		return render(request,"myapp/index.html")
+		post_list = Post.objects.all()
+		return render(request,"myapp/index.html",
+			{'posts': post_list})
 
 	if request.method == 'POST':
 		django_form = AddPost(request.POST or None)
@@ -16,3 +18,7 @@ def index(request):
 			new_post_text = django_form.data.get("text")
 			Post.objects.create(text = new_post_text,)
 			return HttpResponseRedirect("/")
+		else:
+			post_list = Post.objects.all()
+			return render(request,"myapp/index.html",
+				{'posts': post_list})
