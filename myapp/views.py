@@ -16,4 +16,5 @@ def index(request):
 			new_post_text = django_form.data.get("text")
 			Post.objects.create(text = new_post_text,)
 			return HttpResponseRedirect("/")
-		return render(request,"myapp/index.html")
+		else:
+			return render(request,"myapp/index.html")
