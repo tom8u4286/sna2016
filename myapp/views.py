@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 
 def index(request):
 	if request.method == 'GET':
-		return render(request,"myapp/index.html")
+		return render(request or None,"myapp/index.html")
 
 	if request.method == 'POST':
 		django_form = AddPost(request.POST)
