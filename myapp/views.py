@@ -18,4 +18,4 @@ def index(request):
 			return HttpResponseRedirect("/")
 		else:
 			post_list = Post.objects.all()
-			return render(request,"myapp/index.html",,{'posts': post_list})
+			return render(request,"myapp/index.html",{'posts': post_list})
