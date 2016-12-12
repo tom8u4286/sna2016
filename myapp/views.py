@@ -8,10 +8,10 @@ from django.http import HttpResponseRedirect
 
 def index(request):
 	if request.method == 'GET':
-		return render(request or None,"myapp/index.html")
+		return render(request,"myapp/index.html")
 
 	if request.method == 'POST':
-		django_form = AddPost(request.POST)
+		django_form = AddPost(request.POST or None)
 		if django_form.is_valid():
 			new_post_text = django_form.data.get("text")
 			Post.objects.create(text = new_post_text,)
