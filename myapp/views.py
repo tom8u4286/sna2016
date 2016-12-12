@@ -12,5 +12,3 @@ def index(request):
 
 	if request.method == 'POST':
 		django_form = AddPost(request.POST)
-		if django_form.is_valid():
-			print "good"
