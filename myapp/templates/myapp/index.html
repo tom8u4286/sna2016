@@ -118,6 +118,16 @@ $("#my-button").click(function() {
   loginCheck();
 });
 
+var sharing = function(){
+  FB.ui({
+      method: 'share',
+      href:'https://g10416015.herokuapp.com/',
+  },function(response){});
+}
+$("#share-button").click(function(){
+    sharing();
+});
+
 </script>
 </body>
 </html>
