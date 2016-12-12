@@ -19,3 +19,16 @@ var loginCheck = function() {
 $("#my-button").click(function() {
     loginCheck();
 });
+
+window.fbloaded = function() {
+    FB.Event.subscribe('auth.statusChange', function(response) {
+        if (response.status === 'connected') {
+            FB.api("/me/picture?width=30", function(response) {
+                $("#my-profile-picture").attr("src", response.data.url);
+            });
+            FB.api("/me", function(response) {
+                $("#user-name").html( response.name);
+            });
+        }
+    });
+}
