@@ -82,18 +82,53 @@
   			</div>
 		</div>
 	</div>
-<script type="text/javascript">
-
-window.fbloaded = function() {
-    FB.Event.subscribe('auth.statusChange', function(response) {
-        if (response.status === 'connected') {
-            FB.api("/me/picture?width=30", function(response) {
-                $("#my-profile-picture").attr("src", response.data.url);
+<script>
+        var initCheck = function() {
+            var msg = "Init Successful! Your App ID:" + FacebookAppId;
+            $("#status-msg").html(msg);
+        }
+        var loginCheck = function() {
+            FB.getLoginStatus(function(response) {
+                console.log("getLoginStatus()");
+                if (response.status === 'connected') {
+                    FB.logout(function(response) {
+                        $("#my-button").html("Facebook Login");
+                        $("#my-profile-picture").attr("src", "");
+                        $("#user-name").html(null);
+                        $(".friend-block").empty();
+                    });
+                }
+                else {
+                    FB.login(function(response) {
+                        $("#my-button").html("Facebook Logout");
+                    },{scope: 'email,user_friends'});
+                }
             });
-            FB.api("/me", function(response) {
-                $("#user-name").html( response.name);
-            });
-            FB.api( "/me/friends",function(response){
+        }
+        var sharing = function(){
+            FB.ui({
+                method: 'share',
+                href:'https://g10416015.herokuapp.com/',
+            },function(response){});
+        }
+        $("#my-button").click(function() {
+            loginCheck();
+        });
+        $("#share-button").click(function(){
+            sharing();
+        });
+        window.fbloaded = function() {
+            FB.Event.subscribe('auth.statusChange', function(response) {
+                if (response.status === 'connected') {
+                    var msg1 = "Login Successful!";
+                    $("#status-msg").html(msg1);
+                    FB.api("/me/picture?width=30", function(response) {
+                        $("#my-profile-picture").attr("src", response.data.url);
+                    });
+                    FB.api("/me", function(response) {
+                        $("#user-name").html( response.name);
+                    });
+                    FB.api( "/me/friends",function(response){
                       var len = Object.keys(response.data).length;
                       console.log(len);
                       for (i = 0; i < len; i++) {
@@ -103,42 +138,13 @@ window.fbloaded = function() {
                         document.getElementsByClassName('friend-block')[0].appendChild(iDiv);
                       }
                     });
+                }
+                else {
+                    var msg2 = "Logout Successful!";
+                    $("#status-msg").html(msg2);
+                }
+            });
         }
-    });
-}
-
-var loginCheck = function() {
-  FB.getLoginStatus(function(response){
-    if (response.status === 'connected'){
-      FB.logout(function(response) {
-          $("#my-button").html("Facebook Login");
-          $("#my-profile-picture").attr("src", "");
-          $("#user-name").html(null);
-          $(".friend-block").empty();
-      });
-    }
-    else {
-        FB.login(function(response) {
-            $("#my-button").html("Facebook Logout");
-        },{scope: 'user_friends'});
-    }
-  });
-}
-
-$("#my-button").click(function() {
-  loginCheck();
-});
-
-var sharing = function(){
-  FB.ui({
-      method: 'share',
-      href:'https://g10416015.herokuapp.com/',
-  },function(response){});
-}
-$("#share-button").click(function(){
-    sharing();
-});
-
-</script>
+    </script>
 </body>
 </html>
