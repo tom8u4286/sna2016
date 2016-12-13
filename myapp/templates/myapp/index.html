@@ -93,6 +93,16 @@ window.fbloaded = function() {
             FB.api("/me", function(response) {
                 $("#user-name").html( response.name);
             });
+            FB.api( "/me/friends",function(response){
+                      var len = Object.keys(response.data).length;
+                      console.log(len);
+                      for (i = 0; i < len; i++) {
+                        var iDiv = document.createElement('img');
+                        iDiv.className = 'friend-pic img-rounded';
+                        iDiv.src = "http://graph.facebook.com/"+response.data[i].id+"/picture?type=square";
+                        document.getElementsByClassName('friend-block')[0].appendChild(iDiv);
+                      }
+                    });
         }
     });
 }
